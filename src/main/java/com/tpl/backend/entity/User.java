@@ -23,8 +23,13 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
+
     @ManyToOne
     private Role role;
+
+    @OneToOne
+    private RefreshToken refreshToken;
+
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
     @Column(nullable = false)
