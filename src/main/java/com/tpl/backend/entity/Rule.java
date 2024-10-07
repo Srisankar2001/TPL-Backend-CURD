@@ -12,19 +12,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="role")
-public class Role {
+@Table(name = "rule")
+public class Rule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false,unique = true)
-    private String name;
+    @Column(unique = true, nullable = false)
+    private int name;
 
-    @OneToMany(mappedBy = "role")
-    private List<User> users;
-
-    @ManyToMany
-    private List<Rule> rules;
+    @ManyToMany(mappedBy = "rules")
+    private List<Role> roles;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
