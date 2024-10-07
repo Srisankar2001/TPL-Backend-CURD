@@ -18,7 +18,7 @@ public class Rule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(unique = true, nullable = false)
-    private int name;
+    private String name;
 
     @ManyToMany(mappedBy = "rules")
     private List<Role> roles;
