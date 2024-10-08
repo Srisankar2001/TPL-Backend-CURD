@@ -15,7 +15,6 @@ public class RoleController {
     public Response<?> getRoles(){
         return roleService.getRoles();
     }
-
     @GetMapping("/{id}")
     public Response<?> getRole(@PathVariable int id){
         RoleDTO roleDTO = RoleDTO.builder().id(id).build();

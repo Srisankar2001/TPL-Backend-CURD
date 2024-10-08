@@ -15,7 +15,6 @@ public class RuleController {
     public Response<?> getRules(){
         return ruleService.getRules();
     }
-
     @GetMapping("/{id}")
     public Response<?> getRule(@PathVariable int id){
         RuleDTO ruleDTO = RuleDTO.builder().id(id).build();
