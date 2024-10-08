@@ -63,14 +63,23 @@ public class RoleService {
     public Response<?> updateRole(RoleDTO roleDTO){
         Optional<Role> existingRole = roleRepository.findById(roleDTO.getId());
         if(existingRole.isPresent()){
-            Role role = existingRole.get();
-            role.setName(roleDTO.getName());
-            roleRepository.save(role);
-            return Response.builder()
-                    .status(true)
-                    .message("Role Updated Successfully")
-                    .data(null)
-                    .build();
+            Optional<Role> isRoleAlreadyExist = roleRepository.findOneByName(roleDTO.getName());
+            if(isRoleAlreadyExist.isEmpty()){
+                Role role = existingRole.get();
+                role.setName(roleDTO.getName());
+                roleRepository.save(role);
+                return Response.builder()
+                        .status(true)
+                        .message("Role Updated Successfully")
+                        .data(null)
+                        .build();
+            } else {
+                return Response.builder()
+                        .status(false)
+                        .message("Role Already Exists")
+                        .data(null)
+                        .build();
+            }
         }else{
             return Response.builder()
                     .status(false)
@@ -97,5 +106,4 @@ public class RoleService {
                     .build();
         }
     }
-
 }
