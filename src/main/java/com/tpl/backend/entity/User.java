@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-
+import java.util.List;
 
 
 @Data
@@ -27,8 +27,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ManyToOne
-    private Role role;
+    @ManyToMany
+    private List<Role> roles;
 
     @OneToOne
     private RefreshToken refreshToken;
